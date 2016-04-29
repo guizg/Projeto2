@@ -49,14 +49,19 @@ Fexp = [0,
 
 #constantes, Y = [P, S]
 
-k1 = 0.5
-k2 = 0.3
-k3 = 0.2
+k1 = 0.01
+k2 = 0.50
+km = 0.065
+
+Tn=[]
+
+for e in T:
+    Tn.append(e+3)
 
 
 def func(Y,t):
-    dPdt = -k1*Y[0] - k2*Y[0]
-    dFdt = k1*Y[0] - k3*Y[1]
+    dPdt = -k1*Y[0] - km*Y[0]
+    dFdt = k1*Y[0] - k2*Y[1]
     return [dPdt, dFdt]
 
 P0 = 10700
@@ -70,9 +75,9 @@ Y = odeint(func,Y0,T)
 
 
 plt.plot(T, Fexp,'bo')
-plt.plot(T,Y[:,0],'g')
-plt.plot(T,Y[:,1],'r')
-plt.axis([0, max(T), 0, 155])
+plt.plot(Tn,Y[:,0],'g')
+plt.plot(Tn,Y[:,1],'r')
+plt.axis([0, max(T), 0, (max(Fexp)+10)])
 plt.ylabel('Concentração (ng/ml)')
 plt.xlabel('Tempo (min)')
 plt.title(r'Dados Experimentais')
