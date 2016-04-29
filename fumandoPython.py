@@ -7,6 +7,7 @@ Created on Thu Apr 28 13:45:44 2016
 """
 
 import matplotlib.pyplot as plt
+from scipy.integrate import odeint
 
 # DADOS EXPERIMENTAIS
 
@@ -46,8 +47,37 @@ Fexp = [0,
 48.80597,
 ]
 
+#constantes, Y = [P, S]
+
+k1 = 0.01
+k2 = 0.50
+km = 0.065
+
+Tn=[]
+
+for e in T:
+    Tn.append(e+3)
+
+
+def func(Y,t):
+    dPdt = -k1*Y[0] - km*Y[0]
+    dFdt = k1*Y[0] - k2*Y[1]
+    return [dPdt, dFdt]
+
+P0 = 10700
+F0 = 0
+Y0 = [P0, F0]
+
+Y = odeint(func,Y0,T)
+
+
+
+
+
 plt.plot(T, Fexp,'bo')
-plt.axis([0, max(T), 0, 155])
+plt.plot(Tn,Y[:,0],'g')
+plt.plot(Tn,Y[:,1],'r')
+plt.axis([0, max(T), 0, (max(Fexp)+10)])
 plt.ylabel('Concentração (ng/ml)')
 plt.xlabel('Tempo (min)')
 plt.title(r'Dados Experimentais')
