@@ -25,27 +25,32 @@ Cexp = [0,
 
 #constantes, Y = [C, S]
 
-k1 = 0.01
-k2 = 0.50
-km = 0.065
+k1 = 0.0017
+k2 = 0.51
+km = 0.38
 
 def func(Y,t):
     dCdt = -k1*Y[0] - km*Y[0]
     dSdt = k1*Y[0] - k2*Y[1]
     return [dCdt, dSdt]
 
-C0 = 75
+C0 = 500
 S0 = 0
 Y0 = [C0, S0]
 
 Y = odeint(func,Y0,T)
 
+Tn = []
+
+for e in T:
+    Tn.append(e+2)
 
 
+plt.plot(T, Cexp)
 plt.plot(T, Cexp,'bo')
-plt.plot(T,Y[:,0],'g')
-plt.plot(T,Y[:,1],'r')
-plt.axis([0, max(T), 0, max(Cexp)+3])
+plt.plot(Tn,Y[:,0],'g')
+plt.plot(Tn,Y[:,1],'r')
+plt.axis([0, max(T), 0, max(Cexp)+1])
 plt.ylabel('Concentração (ng/ml)')
 plt.xlabel('Tempo (min)')
 plt.title(r'Dados Experimentais')
