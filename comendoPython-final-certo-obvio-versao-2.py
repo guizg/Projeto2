@@ -25,13 +25,14 @@ Cexp = [0,
 
 #constantes, Y = [C, S]
 
-k1 = 0.0017
-k2 = 0.51
-km = 0.38
+k1 = 0.0018
+k2 = 0.55
+km = 0.23
+
 
 def func(Y,t):
     dCdt = -k1*Y[0] - km*Y[0]
-    dSdt = k1*Y[0] - k2*Y[1]*(1+((Y[1]*0.5)/0.68))
+    dSdt = k1*Y[0] - k2*Y[1]*(1+((Y[1]*0.1)/0.68)) -0.02*t
     return [dCdt, dSdt]
 
 C0 = 500

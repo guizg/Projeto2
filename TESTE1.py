@@ -25,13 +25,14 @@ Cexp = [0,
 
 #constantes, Y = [C, S]
 
-k1 = 0.0017
-k2 = 0.51
-km = 0.38
+k1 = 0.0018
+k2 = 0.55
+km = 0.20
+
 
 def func(Y,t):
     dCdt = -k1*Y[0] - km*Y[0]
-    dSdt = k1*Y[0] - k2*Y[1]*(1+((Y[1]*0.5)/0.68))
+    dSdt = k1*Y[0] - k2*Y[1]
     return [dCdt, dSdt]
 
 C0 = 500
@@ -45,11 +46,15 @@ Tn = []
 for e in T:
     Tn.append(e+2)
 
+Y2=[]
+
+for e in Y[:,1]:
+    Y2.append((e -0.2))
 
 plt.plot(T, Cexp)
 plt.plot(T, Cexp,'bo')
 plt.plot(Tn,Y[:,0],'g')
-plt.plot(Tn,Y[:,1],'r')
+plt.plot(Tn,Y2,'r')
 plt.axis([0, max(T), 0, max(Cexp)+1])
 plt.ylabel('Concentração (ng/ml)')
 plt.xlabel('Tempo (min)')
