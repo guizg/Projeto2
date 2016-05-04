@@ -76,7 +76,7 @@ Y = odeint(func,Y0,T)
 
 plt.plot(T, Fexp,'bo')
 plt.plot(Tn,Y[:,0],'g')
-plt.plot(Tn,Y[:,1],'r')
+plt.plot(Tn,Y[:,1],'r', lw = 4)
 plt.axis([0, max(T), 0, (max(Fexp)+10)])
 plt.ylabel('Concentração (ng/ml)')
 plt.xlabel('Tempo (min)')

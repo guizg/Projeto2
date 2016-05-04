@@ -25,9 +25,9 @@ Cexp = [0,
 
 #constantes, Y = [C, S]
 
-k1 = 0.0018
+k1 = 0.0016
 k2 = 0.55
-km = 0.23
+km = 0.2
 
 
 def func(Y,t):
@@ -47,10 +47,10 @@ for e in T:
     Tn.append(e+2)
 
 
-plt.plot(T, Cexp)
-plt.plot(T, Cexp,'bo')
+plt.plot(T, Cexp, lw = 2)
+plt.plot(T, Cexp,'bo', lw = 6)
 plt.plot(Tn,Y[:,0],'g')
-plt.plot(Tn,Y[:,1],'r')
+plt.plot(Tn,Y[:,1],'r', lw = 3)
 plt.axis([0, max(T), 0, max(Cexp)+1])
 plt.ylabel('Concentração (ng/ml)')
 plt.xlabel('Tempo (min)')

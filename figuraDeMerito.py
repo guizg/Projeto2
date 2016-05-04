@@ -32,22 +32,24 @@ for e in T:
 
 C0lista = []
 
-for i in range(10):
-    C0lista.append(i*100)
+for i in range(100):
+    C0lista.append(i*80000)
 
+def k2(Y, t):
+    k2 = 0.55 *(1+((Y[1]*0.1)/0.68)) - 0.02*t
+    return k2
 
-k1 = 0.0017
-k2 = 0.51
-km = 0.38
+k1 = 0.0016
+km = 0.2
 Smax = []
+
 
 def func(Y,t):
     dCdt = -k1*Y[0] - km*Y[0]
-    dSdt = k1*Y[0] - k2*Y[1]
+    dSdt = k1*Y[0] - k2(Y, t)*Y[1]
     return [dCdt, dSdt]
 
-
-for i in range(10):
+for i in range(100):
 
     S0 = 0
     Y0 = [C0lista[i], S0]
@@ -55,14 +57,21 @@ for i in range(10):
     Y = odeint(func,Y0,T)
     
     Smax.append(max(Y[:,1]))
-    
 
+Constante = [152]*100
+Constante2 = [3.2]*100
+Weedlista =[0]
+for i in range (99):
+    Weedlista.append (Weedlista[i] + 0.143)
+print (Weedlista[23])
 
-plt.plot(C0lista,Smax,'g')
-plt.axis([0, max(C0lista), 0, max(Smax)])
+plt.plot(Weedlista,Constante, 'r', lw = 1, linestyle = '--')
+plt.plot(Constante2,Smax, 'b', lw = 1, linestyle = '--')
+plt.plot(Weedlista,Smax,'g', lw = 2.5)
+plt.axis([0, max(Weedlista), 0, max(Smax)])
 plt.ylabel('Pico de concentração no sangue (ng/ml)')
-plt.xlabel('Concentração Inicial no Estomago (ng/ml)')
-plt.title(r'Dados Experimentais')
+plt.xlabel('Qtade de maconha no brigonha (g)')
+plt.title(r'')
 plt.show()
 
 
