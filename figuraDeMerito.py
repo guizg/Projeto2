@@ -66,12 +66,12 @@ for i in range (99):
 print (Weedlista[23])
 
 plt.plot(Weedlista,Constante, 'r', lw = 1, linestyle = '--')
-plt.plot(Constante2,Smax, 'b', lw = 1, linestyle = '--')
-plt.plot(Weedlista,Smax,'g', lw = 2.5)
+plt.plot(Constante2,Smax, 'g', lw = 1, linestyle = '--')
+plt.plot(Weedlista,Smax,'g', lw = 3)
 plt.axis([0, max(Weedlista), 0, max(Smax)])
 plt.ylabel('Pico de concentração no sangue (ng/ml)')
-plt.xlabel('Qtade de maconha no brigonha (g)')
-plt.title(r'')
+plt.xlabel('Quantidade de cannabis ingerida (g)')
+plt.title(r'Quantidade ingerida X Pico de concentração')
 plt.show()
 
 

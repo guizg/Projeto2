@@ -74,11 +74,11 @@ Y = odeint(func,Y0,T)
 
 
 
-plt.plot(T, Fexp,'bo')
-plt.plot(Tn,Y[:,0],'r')
-plt.plot(Tn,Y[:,1],'g', lw = 4)
+plt.plot(T, Fexp,'bo', label = 'Dados Experimentais')
+plt.plot(Tn,Y[:,1],'g', lw = 4, label = 'Modelo')
 plt.axis([0, max(T), 0, (max(Fexp)+10)])
+plt.legend(loc = 'upper right')
 plt.ylabel('Concentração (ng/ml)')
 plt.xlabel('Tempo (min)')
-plt.title(r'Dados Experimentais')
+plt.title(r'Concentração de THC no sangue (FUMANDO)')
 plt.show()
